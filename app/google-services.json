@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "944769112113",
+    "project_id": "mainmarket-39404",
+    "storage_bucket": "mainmarket-39404.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:944769112113:android:19b5a1f3c3060d2af75d10",
+        "android_client_info": {
+          "package_name": "com.ark.mainmarket"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "944769112113-27m1prqeq5ihs888durr1d1c827njmrd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBASPaICI09_tU1MTQKRaQNVzYmdQFHSM4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "944769112113-27m1prqeq5ihs888durr1d1c827njmrd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
