@@ -4,21 +4,33 @@ public class ModelProduct {
 
     private String item_name;
     private String price_normal;
-    private String price_whole;
+    private String condition;
+    private String stock;
     private String description;
     private String url_image;
+    private boolean free_sending;
+    private boolean wholesale;
+    private String price_wholesale;
+    private String min_buy_wholesale;
+    private String disc;
     private String key;
 
     public ModelProduct(){
 
     }
 
-    public ModelProduct(String item_name, String price_normal, String price_whole, String description, String url_image) {
+    public ModelProduct(String item_name, String price_normal, String condition, String stock, String description, String url_image, boolean free_sending, boolean wholesale, String price_wholesale, String min_buy_wholesale, String disc) {
         this.item_name = item_name;
         this.price_normal = price_normal;
-        this.price_whole = price_whole;
+        this.condition = condition;
+        this.stock = stock;
         this.description = description;
         this.url_image = url_image;
+        this.free_sending = free_sending;
+        this.wholesale = wholesale;
+        this.price_wholesale = price_wholesale;
+        this.min_buy_wholesale = min_buy_wholesale;
+        this.disc = disc;
     }
 
     public String getItem_name() {
@@ -37,12 +49,20 @@ public class ModelProduct {
         this.price_normal = price_normal;
     }
 
-    public String getPrice_whole() {
-        return price_whole;
+    public String getCondition() {
+        return condition;
     }
 
-    public void setPrice_whole(String price_whole) {
-        this.price_whole = price_whole;
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
+
+    public String getStock() {
+        return stock;
+    }
+
+    public void setStock(String stock) {
+        this.stock = stock;
     }
 
     public String getDescription() {
@@ -59,6 +79,46 @@ public class ModelProduct {
 
     public void setUrl_image(String url_image) {
         this.url_image = url_image;
+    }
+
+    public boolean isFree_sending() {
+        return free_sending;
+    }
+
+    public void setFree_sending(boolean free_sending) {
+        this.free_sending = free_sending;
+    }
+
+    public boolean isWholesale() {
+        return wholesale;
+    }
+
+    public void setWholesale(boolean wholesale) {
+        this.wholesale = wholesale;
+    }
+
+    public String getPrice_wholesale() {
+        return price_wholesale;
+    }
+
+    public void setPrice_wholesale(String price_wholesale) {
+        this.price_wholesale = price_wholesale;
+    }
+
+    public String getMin_buy_wholesale() {
+        return min_buy_wholesale;
+    }
+
+    public void setMin_buy_wholesale(String min_buy_wholesale) {
+        this.min_buy_wholesale = min_buy_wholesale;
+    }
+
+    public String getDisc() {
+        return disc;
+    }
+
+    public void setDisc(String disc) {
+        this.disc = disc;
     }
 
     public String getKey() {
