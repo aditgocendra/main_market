@@ -4,54 +4,83 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".View.Admin.ProductAdd">
+    tools:context=".View.Admin.AddProduct">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="62dp"
-            android:background="@color/blue_cyan">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/transparent"
+            android:layout_marginTop="32dp">
 
             <ImageView
+                android:id="@+id/back_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_white_arrow_back_24"
+                android:src="@drawable/ic_arrow_back"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"/>
+                app:tint="@color/black"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="8dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Tambah Produk"
                 android:layout_gravity="center_vertical"
-                android:textColor="@color/white"
+                android:gravity="center_vertical"
                 android:textSize="19sp"
-                android:fontFamily="@font/poppins_medium"/>
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/black"/>
 
         </LinearLayout>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_pick_image"
-            android:layout_width="match_parent"
-            android:layout_height="175dp"
-            app:cardCornerRadius="5dp"
-            app:cardElevation="2.5dp"
-            android:layout_weight="1"
-            android:layout_margin="12dp">
 
-            <ImageView
-                android:id="@+id/image_product_add"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_grey_add_a_photo_128"/>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_thumbs_image"
+                android:layout_width="match_parent"
+                android:layout_height="215dp"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="2.5dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="2dp">
 
-        </androidx.cardview.widget.CardView>
+                <ImageView
+                    android:id="@+id/image_product_add"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_grey_add_a_photo_128"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/color_picker"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_margin="8dp"
+                        android:src="@drawable/ic_color_pick"
+                        app:tint="@color/blue_cyan" />
+
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -70,6 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
+                android:textSize="12sp"
                 android:inputType="text"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -89,30 +119,66 @@
                 android:id="@+id/price_item_normal_ti_add"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="12sp"
                 android:fontFamily="@font/poppins_medium"
                 android:inputType="number"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:hint="Harga Grosir (Opsional)"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="6dp"
-            android:layout_gravity="center_horizontal">
+            android:orientation="horizontal">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/price_item_wholesale_ti_add"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/condition_product"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
-                android:inputType="number"/>
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="6dp"
+                android:hint="Pilih Kondisi"
+                android:layout_weight="1">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <AutoCompleteTextView
+                    android:id="@+id/auto_complete_condition"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/poppins_medium"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/stock_product"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="6dp"
+                android:hint="Stok Produk"
+                android:layout_weight="1">
+
+                <AutoCompleteTextView
+                    android:id="@+id/auto_complete_stock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:inputType="none"
+                    android:fontFamily="@font/poppins_medium"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+        </LinearLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -128,25 +194,52 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/description_item_ti_add"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="150dp"
                 android:inputType="textMultiLine"
                 android:fontFamily="@font/poppins_medium"
+                android:textSize="12sp"
                 android:gravity="left|top"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/save_product"
+    </LinearLayout>
+
+    </ScrollView>
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        tools:ignore="BottomAppBar">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="6dp"
-            android:layout_marginEnd="12dp"
-            android:minHeight="60dp"
-            android:backgroundTint="@color/blue_cyan"
-            android:text="Simpan"
-            android:fontFamily="@font/poppins_medium"/>
+            android:orientation="horizontal"
+            android:layout_marginEnd="16dp">
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/save_product"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Simpan"
+                android:fontFamily="@font/poppins_medium"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/promo_sale_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Promo"
+                android:backgroundTint="@color/blue_text"
+                android:fontFamily="@font/poppins_medium"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+    </com.google.android.material.bottomappbar.BottomAppBar>
+
 
 </RelativeLayout>
