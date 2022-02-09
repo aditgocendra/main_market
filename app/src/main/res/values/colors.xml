@@ -8,6 +8,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue_cyan">#00FFFF</color>
+    <color name="blue_text">#07BABA</color>
     <color name="gray">#B3B3B3</color>
+    <color name="red_product">#E13E3E</color>
+    <color name="pink_product">#FFF46D9B</color>
+    <color name="blue_product">#FF80BFF3</color>
+    <color name="yellow_product">#FFFBCA82</color>
     <color name="transparent">#00FFFFFF</color>
 </resources>
