@@ -3,7 +3,10 @@ package com.ark.mainmarket;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.WindowManager;
 
+import com.ark.mainmarket.View.Admin.AddCategory;
+import com.ark.mainmarket.View.Admin.AddProduct;
 import com.ark.mainmarket.View.User.HomeApp;
 
 public class MainActivity extends AppCompatActivity {
@@ -13,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Utility.updateUI(MainActivity.this, HomeApp.class);
+
+        Utility.updateUI(MainActivity.this, AddProduct.class);
     }
 }
