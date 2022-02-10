@@ -66,13 +66,11 @@
                             android:layout_marginStart="11dp"
                             android:fontFamily="@font/poppins_medium"
                             android:layout_gravity="center_vertical|start"
-                            app:drawableLeftCompat="@drawable/ic_icon_search" />
+                            app:drawableLeftCompat="@drawable/ic_icon_search"/>
 
                     </androidx.cardview.widget.CardView>
 
                 </androidx.appcompat.widget.Toolbar>
-
-
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
