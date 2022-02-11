@@ -10,6 +10,10 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 
 import com.ark.mainmarket.R;
+import com.ark.mainmarket.Utility;
+import com.ark.mainmarket.View.Auth.Login;
+import com.ark.mainmarket.databinding.FragmentHomeBinding;
+import com.google.firebase.auth.FirebaseAuth;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -52,16 +56,24 @@ public class Home extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
+    private FragmentHomeBinding binding;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        binding = FragmentHomeBinding.inflate(inflater, container, false);
+
+        binding.accountImg.setOnClickListener(view -> {
+            Utility.toastLS(getActivity(), "tas");
+            Utility.updateUI(getActivity(), Login.class);
+        });
+
+
+
+        return binding.getRoot();
+
     }
 }
