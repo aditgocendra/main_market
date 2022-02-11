@@ -11,8 +11,18 @@
         android:icon="@drawable/ic_feed"/>
 
     <item
+        android:id="@+id/transaction"
+        android:title="Pesanan"
+        android:icon="@drawable/ic_transaction"/>
+
+    <item
+        android:id="@+id/shop_cart"
+        android:title="Keranjang"
+        android:icon="@drawable/ic_shopping_cart"/>
+
+    <item
         android:id="@+id/fav"
-        android:title="Favorite"
+        android:title="Favorit"
         android:icon="@drawable/ic_favorite"/>
 
 </menu>
