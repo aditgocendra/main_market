@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.MainMarket" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/blue_cyan</item>
-        <item name="colorPrimaryVariant">@color/blue_cyan</item>
+        <item name="colorPrimary">@color/blue_text</item>
+        <item name="colorPrimaryVariant">@color/blue_text</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
