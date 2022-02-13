@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class Utility {
 
     public static String uidCurrentUser;
+    public static String roleCurrentUser;
 
     public static void updateUI(Context from, Class to){
         Intent intent = new Intent(from, to);
