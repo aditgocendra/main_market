@@ -52,42 +52,38 @@ public class AddCategory extends AppCompatActivity {
         setContentView(binding.getRoot());
         Utility.login();
 
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        listenerClick();
 
-        binding.selectIconBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (ActivityCompat.checkSelfPermission(AddCategory.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                    pickImageOnGalery();
+    }
 
-                }else{
-                    ActivityCompat.requestPermissions(AddCategory.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, PICK_IMAGE_GALLERY);
-                }
+    private void listenerClick(){
+        binding.selectIconBtn.setOnClickListener(view -> {
+            if (ActivityCompat.checkSelfPermission(AddCategory.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                pickImageOnGalery();
+
+            }else{
+                ActivityCompat.requestPermissions(AddCategory.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, PICK_IMAGE_GALLERY);
             }
         });
 
-        binding.previewIconBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (binding.nameCategoryAdd.getText().toString().isEmpty()){
-                    binding.nameCategoryAdd.setError("Nama kategori kosong");
-                }else {
-                    binding.previewNameCategory.setText(binding.nameCategoryAdd.getText().toString());
-                }
+        binding.previewIconBtn.setOnClickListener(view -> {
+            if (binding.nameCategoryAdd.getText().toString().isEmpty()){
+                binding.nameCategoryAdd.setError("Nama kategori kosong");
+            }else {
+                binding.previewNameCategory.setText(binding.nameCategoryAdd.getText().toString());
             }
         });
 
-        binding.saveBtnCategory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (binding.nameCategoryAdd.getText().toString().isEmpty()){
-                    binding.nameCategoryAdd.setError("Nama kategori kosong");
+        binding.saveBtnCategory.setOnClickListener(view -> {
+            if (binding.nameCategoryAdd.getText().toString().isEmpty()){
+                binding.nameCategoryAdd.setError("Nama kategori kosong");
+            }else {
+                if (onPickMedia > 0){
+                    binding.saveBtnCategory.setEnabled(false);
+                    saveIconCategory();
                 }else {
-                    if (onPickMedia > 0){
-                        binding.saveBtnCategory.setEnabled(false);
-                        saveIconCategory();
-                    }else {
-                        Utility.toastLS(AddCategory.this, "Anda belum mengupload icon");
-                    }
+                    Utility.toastLS(AddCategory.this, "Anda belum mengupload icon");
                 }
             }
         });
@@ -107,29 +103,13 @@ public class AddCategory extends AppCompatActivity {
 
         UploadTask uploadTask = storageRef.putBytes(data);
 
-        uploadTask.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Utility.toastLS(AddCategory.this, "Icon gagal diupload");
-                binding.saveBtnCategory.setEnabled(true);
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        saveCategory(String.valueOf(uri));
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Utility.toastLS(AddCategory.this, "Url photo gagal di unduh");
-                        binding.saveBtnCategory.setEnabled(true);
-                    }
-                });
-            }
-        });
+        uploadTask.addOnFailureListener(e -> {
+            Utility.toastLS(AddCategory.this, "Icon gagal diupload");
+            binding.saveBtnCategory.setEnabled(true);
+        }).addOnSuccessListener(taskSnapshot -> storageRef.getDownloadUrl().addOnSuccessListener(uri -> saveCategory(String.valueOf(uri))).addOnFailureListener(e -> {
+            Utility.toastLS(AddCategory.this, "Url photo gagal di unduh");
+            binding.saveBtnCategory.setEnabled(true);
+        }));
     }
 
     private void saveCategory(String url) {
@@ -140,17 +120,14 @@ public class AddCategory extends AppCompatActivity {
                 url
         );
 
-        reference.child("category").push().setValue(modelCategory).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()){
-                    Utility.toastLS(AddCategory.this, "Berhasil menambahkan kateg" +
-                            "ori");
-                    binding.saveBtnCategory.setEnabled(true);
-                }else {
-                    Utility.toastLS(AddCategory.this, "Gagal menambahkan kategori");
-                    binding.saveBtnCategory.setEnabled(true);
-                }
+        reference.child("category").push().setValue(modelCategory).addOnCompleteListener(task -> {
+            if (task.isSuccessful()){
+                Utility.toastLS(AddCategory.this, "Berhasil menambahkan kateg" +
+                        "ori");
+                binding.saveBtnCategory.setEnabled(true);
+            }else {
+                Utility.toastLS(AddCategory.this, "Gagal menambahkan kategori");
+                binding.saveBtnCategory.setEnabled(true);
             }
         });
     }
