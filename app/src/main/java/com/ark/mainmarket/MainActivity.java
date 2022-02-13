@@ -1,19 +1,18 @@
 package com.ark.mainmarket;
 
-import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.WindowManager;
-
-import com.ark.mainmarket.View.Admin.AddCategory;
-import com.ark.mainmarket.View.Admin.AddProduct;
+import com.ark.mainmarket.Model.ModelUser;
 import com.ark.mainmarket.View.Auth.Login;
-import com.ark.mainmarket.View.Fragment.Home;
 import com.ark.mainmarket.View.User.HomeApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,19 +23,31 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
         Handler handler = new Handler(Looper.getMainLooper());
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
-                if (mUser != null){
-                    Utility.updateUI(MainActivity.this, HomeApp.class);
-                    Utility.uidCurrentUser = mUser.getUid();
-                }else {
-                    Utility.updateUI(MainActivity.this, Login.class);
-                }
+        handler.postDelayed(() -> {
+            FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
+            if (mUser != null){
+                // set uid current user
+                Utility.uidCurrentUser = mUser.getUid();
+                // set role current user
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+                reference.child("users").child(mUser.getUid()).get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()){
+                        ModelUser modelUser = task.getResult().getValue(ModelUser.class);
+                        Utility.roleCurrentUser = modelUser.getRole();
 
-                finish();
+                    }else {
+                        Utility.toastLS(MainActivity.this, task.getException().getMessage());
+                        System.exit(0);
+                    }
+                });
+
+                Utility.updateUI(MainActivity.this, HomeApp.class);
+
+            }else {
+                Utility.updateUI(MainActivity.this, Login.class);
             }
+
+            finish();
         }, 1000);
 
 
