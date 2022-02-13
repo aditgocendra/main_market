@@ -12,6 +12,7 @@ import android.view.WindowManager;
 import com.ark.mainmarket.R;
 import com.ark.mainmarket.Utility;
 import com.ark.mainmarket.View.Auth.Login;
+import com.ark.mainmarket.View.User.Profile;
 import com.ark.mainmarket.databinding.FragmentHomeBinding;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -67,8 +68,7 @@ public class Home extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
         binding.accountImg.setOnClickListener(view -> {
-            Utility.toastLS(getActivity(), "tas");
-            Utility.updateUI(getActivity(), Login.class);
+            Utility.updateUI(getActivity(), Profile.class);
         });
 
 
