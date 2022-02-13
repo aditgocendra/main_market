@@ -5,6 +5,7 @@ public class ModelUser {
     private String username;
     private String email;
     private String phone_number;
+    private String address;
     private String role;
     private String url_photo;
     private String key;
@@ -13,10 +14,11 @@ public class ModelUser {
 
     }
 
-    public ModelUser(String username, String email, String phone_number, String role, String url_photo) {
+    public ModelUser(String username, String email, String phone_number, String address, String role, String url_photo) {
         this.username = username;
         this.email = email;
         this.phone_number = phone_number;
+        this.address = address;
         this.role = role;
         this.url_photo = url_photo;
     }
@@ -43,6 +45,14 @@ public class ModelUser {
 
     public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getRole() {
