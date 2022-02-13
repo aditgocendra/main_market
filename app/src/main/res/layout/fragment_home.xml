@@ -51,9 +51,9 @@
 
                         <ImageView
                             android:id="@+id/account_img"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_account_circle"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:src="@drawable/default_profile_img_gray"
                             android:layout_marginEnd="11dp"
                             android:layout_gravity="center_vertical|end"/>
 
@@ -63,7 +63,7 @@
                             android:text="Pencarian"
                             android:textColor="#B3B3B3"
                             android:gravity="center_vertical"
-                            android:textSize="15sp"
+                            android:textSize="14sp"
                             android:layout_marginStart="11dp"
                             android:fontFamily="@font/poppins_medium"
                             android:layout_gravity="center_vertical|start"
