@@ -99,6 +99,7 @@ public class Register extends AppCompatActivity {
                 username,
                 email,
                 "-",
+                "-",
                 "Customer",
                 "-"
         );
