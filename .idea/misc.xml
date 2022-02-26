@@ -12,6 +12,7 @@
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/drawable/background_corner_only_right.xml" value="0.136" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/drawable/background_round_right.xml" value="0.155" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/drawable/ic_account_circle.xml" value="0.20625" />
+        <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/drawable/ic_add.xml" value="0.1735" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/drawable/ic_admin_settings.xml" value="0.1735" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/drawable/ic_all_category.xml" value="0.187" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/drawable/ic_arrow_back.xml" value="0.1595" />
@@ -32,20 +33,24 @@
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout-v23/activity_login.xml" value="0.29322916666666665" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/activity_add_category.xml" value="0.22" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/activity_administrator_menu.xml" value="0.33" />
+        <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/activity_edit_category.xml" value="0.24070115433946132" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/activity_forgot_password.xml" value="0.24070115433946132" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/activity_home_app.xml" value="0.2" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/activity_main.xml" value="0.2791666666666667" />
+        <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/activity_manage_category.xml" value="0.22" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/activity_product_add.xml" value="0.191044776119403" />
-        <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/activity_profile.xml" value="0.22" />
+        <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/activity_profile.xml" value="0.25" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/activity_register.xml" value="0.22" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/fragment_favorite.xml" value="0.17144078666096624" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/fragment_feed.xml" value="0.17144078666096624" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/layout_dialog_edit_category.xml" value="0.33" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/layout_dialog_promo.xml" value="0.22" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/layout_item_category.xml" value="0.1954861111111111" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/layout_item_product.xml" value="0.24070115433946132" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/layout_item_product_1.xml" value="0.25" />
+        <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/layout_manage_category.xml" value="0.25" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/layout_option_item.xml" value="0.21223354958294718" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1954861111111111" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/menu/codition_product_menu.xml" value="0.21223354958294718" />
