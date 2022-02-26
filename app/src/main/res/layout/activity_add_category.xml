@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".View.Admin.AddCategory">
 
+    <ProgressBar
+        android:id="@+id/progress_circular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:translationZ="1dp"
+        android:visibility="gone"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -74,7 +82,7 @@
                         android:layout_height="wrap_content"
                         android:text="Nama Kategori"
                         android:maxLines="2"
-                        android:maxLength="20"
+                        android:maxLength="24"
                         android:textAlignment="center"
                         android:fontFamily="@font/poppins_light"
                         android:textColor="@color/black"
@@ -130,24 +138,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
-                    android:maxLength="20"
+                    android:maxLength="24"
                     android:inputType="text"
                     android:textSize="12sp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
-                android:id="@+id/select_icon_btn"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                android:backgroundTint="@color/blue_text"
-                android:fontFamily="@font/poppins_medium"
-                android:text="Pilih Icon"
-                android:textColor="@color/white"
-                android:layout_weight="1"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -157,12 +153,13 @@
                 android:layout_marginEnd="12dp">
 
                 <Button
-                    android:id="@+id/preview_icon_btn"
+                    android:id="@+id/select_icon_btn"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginEnd="6dp"
                     android:backgroundTint="@color/blue_text"
-                    android:text="Preview"
+                    android:text="Pilih Icon"
+                    android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:layout_weight="1"/>
 
@@ -171,7 +168,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginStart="6dp"
-                    android:backgroundTint="@color/blue_cyan"
+                    android:backgroundTint="@color/blue_text"
+                    android:textAllCaps="false"
                     android:text="Simpan"
                     android:textColor="@color/white"
                     android:layout_weight="1"/>
@@ -183,11 +181,6 @@
 
         </LinearLayout>
 
-
     </LinearLayout>
-
-
-
-
 
 </RelativeLayout>

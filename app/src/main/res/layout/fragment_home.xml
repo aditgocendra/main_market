@@ -42,7 +42,7 @@
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
-                        android:layout_height="?attr/actionBarSize"
+                        android:layout_height="50dp"
                         app:cardCornerRadius="8dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginEnd="16dp"
@@ -51,8 +51,8 @@
 
                         <ImageView
                             android:id="@+id/account_img"
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
                             android:src="@drawable/default_profile_img_gray"
                             android:layout_marginEnd="11dp"
                             android:layout_gravity="center_vertical|end"/>
@@ -63,8 +63,9 @@
                             android:text="Pencarian"
                             android:textColor="#B3B3B3"
                             android:gravity="center_vertical"
-                            android:textSize="14sp"
+                            android:textSize="13sp"
                             android:layout_marginStart="11dp"
+                            android:drawablePadding="4dp"
                             android:fontFamily="@font/poppins_medium"
                             android:layout_gravity="center_vertical|start"
                             app:drawableLeftCompat="@drawable/ic_icon_search"/>
@@ -130,7 +131,7 @@
                                     android:textAlignment="center"
                                     android:fontFamily="@font/poppins_light"
                                     android:textColor="@color/black"
-                                    android:textSize="6sp"/>
+                                    android:textSize="8sp"/>
 
                             </LinearLayout>
 

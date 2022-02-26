@@ -152,9 +152,9 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="0.2"
                         android:hint="Lokasi Anda"
                         android:textColorHint="#B3B3B3">
 
@@ -174,14 +174,14 @@
 
                     <ImageButton
                         android:id="@+id/location_search"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="42dp"
                         android:layout_gravity="center"
+                        android:layout_marginEnd="16dp"
+                        android:layout_weight="1"
                         android:backgroundTint="@color/blue_text"
-                        android:minWidth="48dp"
-                        android:minHeight="48dp"
                         android:src="@drawable/ic_location_searching"
-                        tools:ignore="SpeakableTextPresentCheck" />
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 
                 </LinearLayout>
@@ -222,8 +222,7 @@
                     android:id="@+id/administrator_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
+                    android:padding="12dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="Administrator"
                     android:textColor="#B3B3B3"
@@ -235,8 +234,7 @@
                     android:id="@+id/logout_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
+                    android:padding="12dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="Keluar"
                     android:textColor="#B3B3B3"
