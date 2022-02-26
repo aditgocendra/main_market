@@ -19,19 +19,18 @@ public class AdministratorMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityAdministratorMenuBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        Utility.checkWindowSetFlag(this);
         listenerClick();
 
     }
 
     private void listenerClick() {
         binding.backBtn.setOnClickListener(view -> {
-            Utility.updateUI(AdministratorMenu.this, Profile.class);
             finish();
         });
 
         binding.cardCategoryManage.setOnClickListener(view -> {
-            Utility.updateUI(AdministratorMenu.this, AddCategory.class);
+            Utility.updateUI(AdministratorMenu.this, ManageCategory.class);
         });
     }
 }

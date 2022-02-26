@@ -1,10 +1,8 @@
 package com.ark.mainmarket.View.User;
 
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.content.Context;
 import android.content.IntentSender;
@@ -16,8 +14,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.view.View;
-import android.view.WindowManager;
-
 import com.ark.mainmarket.Model.ModelUser;
 import com.ark.mainmarket.Utility;
 import com.ark.mainmarket.View.Admin.AdministratorMenu;
@@ -59,39 +55,29 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        Utility.checkWindowSetFlag(this);
 
-        if (Utility.roleCurrentUser.equals("Admin")) {
+        if (Utility.roleCurrentUser.equals("admin")){
             binding.administratorBtn.setVisibility(View.VISIBLE);
         }
+
 
         listenerClick();
         setDataProfile();
     }
 
     private void listenerClick() {
-        binding.backBtn.setOnClickListener(view -> {
-            Utility.updateUI(Profile.this, HomeApp.class);
-            finish();
-        });
+        binding.backBtn.setOnClickListener(view -> finish());
 
-        binding.administratorBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (Utility.roleCurrentUser.equals("Admin")){
-                    Utility.updateUI(Profile.this, AdministratorMenu.class);
-                }
-
-            }
-        });
+        binding.administratorBtn.setOnClickListener(view -> Utility.updateUI(Profile.this, AdministratorMenu.class));
 
         binding.logoutBtn.setOnClickListener(view -> auth.signOut());
 
         binding.editDataProfile.setOnClickListener(view -> {
-            String username = binding.usernameEditTi.getText().toString();
-            String email = binding.emailEditTi.getText().toString();
-            String phoneNumber = binding.phoneNumberEditTi.getText().toString();
-            String address = binding.locationTiEdit.getText().toString();
+            String username = Objects.requireNonNull(binding.usernameEditTi.getText()).toString();
+            String email = Objects.requireNonNull(binding.emailEditTi.getText()).toString();
+            String phoneNumber = Objects.requireNonNull(binding.phoneNumberEditTi.getText()).toString();
+            String address = Objects.requireNonNull(binding.locationTiEdit.getText()).toString();
 
             if (username.isEmpty()) {
                 binding.usernameEditTi.setError("Username kosong");

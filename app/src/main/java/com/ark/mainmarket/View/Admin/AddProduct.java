@@ -70,7 +70,7 @@ public class AddProduct extends AppCompatActivity {
         binding = ActivityProductAddBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        Utility.checkWindowSetFlag(this);
 //        binding.cardThumbsImage.setBackgroundResource(R.color.blue_product);
 
         binding.imageProductAdd.setOnClickListener(new View.OnClickListener() {
