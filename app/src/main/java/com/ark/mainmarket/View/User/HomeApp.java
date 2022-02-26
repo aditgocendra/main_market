@@ -1,22 +1,29 @@
 package com.ark.mainmarket.View.User;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.annotation.SuppressLint;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.Window;
-import android.view.WindowManager;
 
+import android.os.Bundle;
+
+
+import com.ark.mainmarket.Model.ModelUser;
 import com.ark.mainmarket.R;
+import com.ark.mainmarket.Utility;
 import com.ark.mainmarket.View.Fragment.Favorite;
 import com.ark.mainmarket.View.Fragment.Feed;
 import com.ark.mainmarket.View.Fragment.Home;
 import com.ark.mainmarket.databinding.ActivityHomeAppBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Objects;
 
 public class HomeApp extends AppCompatActivity {
 
@@ -28,7 +35,9 @@ public class HomeApp extends AppCompatActivity {
         binding = ActivityHomeAppBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        Utility.checkWindowSetFlag(this);
+        setGlobalRole();
+
 
         changeFragment(new Home());
         binding.bottomNavbar.setOnItemSelectedListener(item -> {
@@ -55,5 +64,22 @@ public class HomeApp extends AppCompatActivity {
         fragmentTransaction.setCustomAnimations(R.anim.nav_default_pop_enter_anim, R.anim.nav_default_pop_exit_anim);
         fragmentTransaction.replace(R.id.frame_layout_fragment, fragment);
         fragmentTransaction.commit();
+    }
+
+    private void setGlobalRole(){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+
+        reference.child("users").child(Utility.uidCurrentUser).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (task.isSuccessful()){
+                    ModelUser modelUser = task.getResult().getValue(ModelUser.class);
+                    assert modelUser != null;
+                    Utility.roleCurrentUser = modelUser.getRole();
+                }else {
+                    Utility.toastLS(HomeApp.this, Objects.requireNonNull(task.getException()).getMessage());
+                }
+            }
+        });
     }
 }
