@@ -37,10 +37,12 @@
             android:text="Grosir"/>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_price_wholesale_ti_add"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:hint="Harga Grosir"
+            android:visibility="gone"
             android:layout_marginBottom="6dp"
             android:layout_gravity="center_horizontal">
 
@@ -51,17 +53,18 @@
                 android:fontFamily="@font/poppins_medium"
                 android:focusableInTouchMode="true"
                 android:textSize="12sp"
-                android:enabled="false"
                 android:inputType="number"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_min_buy_wholesale"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:hint="Minimum Pembelian Grosir"
             android:layout_marginBottom="6dp"
+            android:visibility="gone"
             android:layout_gravity="center_horizontal">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -71,7 +74,6 @@
                 android:fontFamily="@font/poppins_medium"
                 android:focusableInTouchMode="true"
                 android:textSize="12sp"
-                android:enabled="false"
                 android:inputType="number"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -91,6 +93,7 @@
                 android:layout_height="wrap_content"
                 android:focusableInTouchMode="true"
                 android:inputType="none"
+                android:text="-"
                 android:textSize="12sp"
                 android:fontFamily="@font/poppins_medium"
                 />
