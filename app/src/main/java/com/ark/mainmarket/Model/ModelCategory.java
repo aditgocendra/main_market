@@ -38,4 +38,19 @@ public class ModelCategory {
     public void setKey(String key) {
         this.key = key;
     }
+
+    @Override
+    public String toString() {
+        return name_category;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ModelCategory that = (ModelCategory) o;
+        return key.equals(that.key);
+    }
+
+
 }
