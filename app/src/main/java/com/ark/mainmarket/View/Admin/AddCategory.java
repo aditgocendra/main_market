@@ -1,35 +1,26 @@
 package com.ark.mainmarket.View.Admin;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-
-
 import com.ark.mainmarket.Model.ModelCategory;
-
 import com.ark.mainmarket.Utility;
 import com.ark.mainmarket.databinding.ActivityAddCategoryBinding;
-
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
-
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -62,7 +53,7 @@ public class AddCategory extends AppCompatActivity {
 
         binding.selectIconBtn.setOnClickListener(view -> {
             if (ActivityCompat.checkSelfPermission(AddCategory.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                pickImageOnGalery();
+                pickImageOnGallery();
 
             }else{
                 ActivityCompat.requestPermissions(AddCategory.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, PICK_IMAGE_GALLERY);
@@ -148,7 +139,7 @@ public class AddCategory extends AppCompatActivity {
         });
     }
 
-    private void pickImageOnGalery() {
+    private void pickImageOnGallery() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
