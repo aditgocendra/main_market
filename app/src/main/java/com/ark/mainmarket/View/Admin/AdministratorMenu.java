@@ -32,5 +32,12 @@ public class AdministratorMenu extends AppCompatActivity {
         binding.cardCategoryManage.setOnClickListener(view -> {
             Utility.updateUI(AdministratorMenu.this, ManageCategory.class);
         });
+
+        binding.cardProductManage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Utility.updateUI(AdministratorMenu.this, ManageProduct.class);
+            }
+        });
     }
 }
