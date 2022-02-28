@@ -4,10 +4,12 @@ public class ModelProduct {
 
     private String item_name;
     private String price_normal;
+    private String category;
     private String condition;
     private String stock;
     private String description;
     private String url_image;
+    private String color_background;
     private boolean free_sending;
     private boolean wholesale;
     private String price_wholesale;
@@ -19,13 +21,15 @@ public class ModelProduct {
 
     }
 
-    public ModelProduct(String item_name, String price_normal, String condition, String stock, String description, String url_image, boolean free_sending, boolean wholesale, String price_wholesale, String min_buy_wholesale, String disc) {
+    public ModelProduct(String item_name, String price_normal, String category, String condition, String stock, String description, String url_image, String color_background, boolean free_sending, boolean wholesale, String price_wholesale, String min_buy_wholesale, String disc) {
         this.item_name = item_name;
         this.price_normal = price_normal;
+        this.category = category;
         this.condition = condition;
         this.stock = stock;
         this.description = description;
         this.url_image = url_image;
+        this.color_background = color_background;
         this.free_sending = free_sending;
         this.wholesale = wholesale;
         this.price_wholesale = price_wholesale;
@@ -47,6 +51,14 @@ public class ModelProduct {
 
     public void setPrice_normal(String price_normal) {
         this.price_normal = price_normal;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getCondition() {
@@ -79,6 +91,14 @@ public class ModelProduct {
 
     public void setUrl_image(String url_image) {
         this.url_image = url_image;
+    }
+
+    public String getColor_background() {
+        return color_background;
+    }
+
+    public void setColor_background(String color_background) {
+        this.color_background = color_background;
     }
 
     public boolean isFree_sending() {
