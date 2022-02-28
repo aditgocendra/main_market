@@ -6,6 +6,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".View.Admin.AddProduct">
 
+    <ProgressBar
+        android:id="@+id/progress_circular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:translationZ="1dp"/>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -60,6 +68,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
+
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_grey_add_a_photo_128"/>
 
@@ -125,6 +134,27 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/category_product"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="6dp"
+                android:hint="Pilih Kategori">
+
+                <AutoCompleteTextView
+                    android:id="@+id/auto_complete_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/poppins_medium"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -223,6 +253,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Simpan"
+                android:textAllCaps="false"
                 android:fontFamily="@font/poppins_medium"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"/>
@@ -232,6 +263,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Promo"
+                android:textAllCaps="false"
                 android:backgroundTint="@color/blue_text"
                 android:fontFamily="@font/poppins_medium"
                 android:layout_marginStart="8dp"
