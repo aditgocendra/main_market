@@ -18,6 +18,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class Utility {
 
     public static String uidCurrentUser;
@@ -62,7 +65,6 @@ public class Utility {
     }
 
     public static void setWindowFlag(Activity activity, final int bits, boolean on) {
-
         Window win = activity.getWindow();
         WindowManager.LayoutParams winParams = win.getAttributes();
         if (on) {
@@ -72,4 +74,14 @@ public class Utility {
         }
         win.setAttributes(winParams);
     }
+
+    public static String currencyRp(String number){
+        double decimalNumber = Double.parseDouble(number);
+
+        Locale localeID = new Locale("in", "ID");
+        NumberFormat rupiahFormat = NumberFormat.getNumberInstance(localeID);
+        return "Rp. "+rupiahFormat.format(decimalNumber);
+    }
+    
+    
 }
