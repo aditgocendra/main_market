@@ -1,11 +1,13 @@
 package com.ark.mainmarket.Adapter;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -54,7 +56,28 @@ public class AdapterManageCategory extends RecyclerView.Adapter<AdapterManageCat
         holder.nameCategory.setText(modelCategory.getName_category());
 
         holder.cardDelete.setOnClickListener(view -> {
-            deleteCategory(modelCategory.getKey(), modelCategory.getIcon_link(), position);
+            //Create the Dialog here
+            Dialog dialog = new Dialog(mContext);
+            dialog.setContentView(R.layout.custom_delete_dialog);
+            dialog.getWindow().setBackgroundDrawable(mContext.getDrawable(R.drawable.custom_background_dialog));
+
+            dialog.getWindow().setLayout(
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT);
+
+            dialog.setCancelable(false); //Optional
+            dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation; //Setting the animations to dialog
+
+            Button Okay = dialog.findViewById(R.id.btn_okay);
+            Button Cancel = dialog.findViewById(R.id.btn_cancel);
+
+            dialog.show();
+            Okay.setOnClickListener(v -> {
+                deleteCategory(modelCategory.getKey(), modelCategory.getIcon_link(), position);
+                dialog.dismiss();
+            });
+
+            Cancel.setOnClickListener(v -> dialog.dismiss());
         });
 
         holder.cardEdit.setOnClickListener(view -> {
