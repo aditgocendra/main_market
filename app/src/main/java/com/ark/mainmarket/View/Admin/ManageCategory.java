@@ -99,9 +99,9 @@ public class ManageCategory extends AppCompatActivity {
 
         Query query;
         if (key == null){
-            query = reference.child("category").orderByKey().limitToFirst(5);
+            query = reference.child("category").orderByKey().limitToFirst(10);
         }else {
-            query = reference.child("category").orderByKey().startAfter(key).limitToFirst(5);
+            query = reference.child("category").orderByKey().startAfter(key).limitToFirst(10);
         }
 
         isLoadData = true;
