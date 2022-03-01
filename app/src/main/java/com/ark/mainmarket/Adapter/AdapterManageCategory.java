@@ -54,7 +54,38 @@ public class AdapterManageCategory extends RecyclerView.Adapter<AdapterManageCat
 
         Picasso.get().load(modelCategory.getIcon_link()).into(holder.iconCategory);
         holder.nameCategory.setText(modelCategory.getName_category());
+        if (!modelCategory.getName_category().equals("Semua Kategori")){
+            categoryManage(holder, modelCategory, position);
+        }
 
+
+    }
+    
+
+
+    @Override
+    public int getItemCount() {
+        return modelCategoryList.size();
+    }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        ImageView iconCategory;
+        TextView nameCategory;
+        CardView cardEdit, cardDelete;
+
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            iconCategory = itemView.findViewById(R.id.icon_category_manage);
+            iconCategory.setBackgroundColor(Color.TRANSPARENT);
+            nameCategory = itemView.findViewById(R.id.name_category_manage);
+            cardEdit = itemView.findViewById(R.id.card_edit_category);
+            cardDelete = itemView.findViewById(R.id.card_delete_category);
+
+        }
+    }
+
+    private void categoryManage(MyViewHolder holder, ModelCategory modelCategory, int position){
         holder.cardDelete.setOnClickListener(view -> {
             //Create the Dialog here
             Dialog dialog = new Dialog(mContext);
@@ -87,30 +118,6 @@ public class AdapterManageCategory extends RecyclerView.Adapter<AdapterManageCat
             intent.putExtra("icon_url", modelCategory.getIcon_link());
             mContext.startActivity(intent);
         });
-    }
-    
-
-
-    @Override
-    public int getItemCount() {
-        return modelCategoryList.size();
-    }
-
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        ImageView iconCategory;
-        TextView nameCategory;
-        CardView cardEdit, cardDelete;
-
-        public MyViewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            iconCategory = itemView.findViewById(R.id.icon_category_manage);
-            iconCategory.setBackgroundColor(Color.TRANSPARENT);
-            nameCategory = itemView.findViewById(R.id.name_category_manage);
-            cardEdit = itemView.findViewById(R.id.card_edit_category);
-            cardDelete = itemView.findViewById(R.id.card_delete_category);
-
-        }
     }
 
     private void deleteCategory(String key, String urlPhoto, int pos){
