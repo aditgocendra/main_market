@@ -109,7 +109,7 @@ public class EditProduct extends AppCompatActivity {
             String nameItem = binding.nameItemTiEdit.getText().toString();
             String priceNormalItem = binding.priceItemNormalTiEdit.getText().toString();
             String condition = binding.autoCompleteCondition.getText().toString();
-            String stock = binding.autoCompleteStock.getText().toString();
+            String stock = binding.stockProductEdit.getText().toString();
             String desc = binding.descriptionItemTiEdit.getText().toString();
 
             if (nameItem.isEmpty()){
@@ -119,7 +119,7 @@ public class EditProduct extends AppCompatActivity {
             }else if (condition.isEmpty()){
                 binding.autoCompleteCondition.setError("Tidak boleh kosong");
             }else if (stock.isEmpty()){
-                binding.autoCompleteStock.setError("Tidak boleh kosong");
+                binding.stockProductEdit.setError("Tidak boleh kosong");
             }else if (desc.isEmpty()){
                 binding.descriptionItemTiEdit.setError("Tidak boleh kosong");
             }else if (categorySelectKey == null){
@@ -173,7 +173,7 @@ public class EditProduct extends AppCompatActivity {
         String nameItem = binding.nameItemTiEdit.getText().toString();
         String priceNormalItem = binding.priceItemNormalTiEdit.getText().toString();
         String condition = binding.autoCompleteCondition.getText().toString();
-        String stock = binding.autoCompleteStock.getText().toString();
+        String stock = binding.stockProductEdit.getText().toString();
         String desc = binding.descriptionItemTiEdit.getText().toString();
         boolean freeSending = false, wholeSale = false;
         String priceWholeSale = "-", minWholeSale= "-";
@@ -222,7 +222,7 @@ public class EditProduct extends AppCompatActivity {
         TextInputLayout layoutMinBuyWholesale = viewBottomDialog.findViewById(R.id.layout_min_buy_wholesale);
         Button finishPromoBtn = viewBottomDialog.findViewById(R.id.finish_promo_btn);
 
-        String[] disc = {"-","10", "20", "50", "70", "90"};
+        String[] disc = {"-", "5", "10", "20", "50", "70", "90"};
         ArrayAdapter<String> discAdapter;
         discAdapter = new ArrayAdapter<>(this, R.layout.layout_option_item, disc);
         autoCompleteDisc.setAdapter(discAdapter);
@@ -249,12 +249,6 @@ public class EditProduct extends AppCompatActivity {
         ArrayAdapter<String> conditionAdapter;
         conditionAdapter = new ArrayAdapter<>(this, R.layout.layout_option_item, condition);
         binding.autoCompleteCondition.setAdapter(conditionAdapter);
-
-        String[] stock = {"> 10", "> 100", "> 1000"};
-        ArrayAdapter<String> stockAdapter;
-        stockAdapter = new ArrayAdapter<>(this, R.layout.layout_option_item, stock);
-        binding.autoCompleteStock.setAdapter(stockAdapter);
-
     }
 
     private void pickImageOnGalery() {
@@ -321,10 +315,10 @@ public class EditProduct extends AppCompatActivity {
                     binding.nameItemTiEdit.setText(modelProduct.getItem_name());
                     binding.priceItemNormalTiEdit.setText(modelProduct.getPrice_normal());
                     binding.descriptionItemTiEdit.setText(modelProduct.getDescription());
+                    binding.stockProductEdit.setText(modelProduct.getStock());
                     binding.autoCompleteCondition.setText(modelProduct.getCondition(), false);
                     binding.autoCompleteCondition.setSelection(binding.autoCompleteCondition.getText().length());
-                    binding.autoCompleteStock.setText(modelProduct.getStock());
-                    binding.autoCompleteStock.setSelection(binding.autoCompleteStock.getText().length());
+
                     binding.cardThumbsImage.setCardBackgroundColor(Integer.parseInt(modelProduct.getColor_background()));
 
                     // bottom dialog edit set data - (Opsional)
