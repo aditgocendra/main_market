@@ -1,8 +1,8 @@
 package com.ark.mainmarket.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +10,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ark.mainmarket.Model.ModelProduct;
 import com.ark.mainmarket.R;
 import com.ark.mainmarket.Utility;
+import com.ark.mainmarket.View.User.ProductDetail;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -47,14 +49,21 @@ public class AdapterHomeNewProduct extends RecyclerView.Adapter<AdapterHomeNewPr
 
         if (!modelProduct.getDisc().equals("-")){
             holder.priceNormal.setVisibility(View.VISIBLE);
-            holder.priceNormal.setText(modelProduct.getPrice_normal());
+            holder.priceNormal.setText(Utility.currencyRp(modelProduct.getPrice_normal()));
             holder.priceNormal.setPaintFlags(holder.priceNormal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-            int totalDisc = Integer.parseInt(modelProduct.getPrice_normal()) * (Integer.parseInt(modelProduct.getDisc()) / 100);
-            int priceSale = Integer.parseInt(modelProduct.getPrice_normal()) - totalDisc;
+            float totalDisc = Integer.parseInt(modelProduct.getPrice_normal()) * (Float.parseFloat(modelProduct.getDisc()) / 100);
+            float priceSale = Integer.parseInt(modelProduct.getPrice_normal()) - totalDisc;
             holder.priceSale.setText(Utility.currencyRp(String.valueOf(priceSale)));
         }else {
             holder.priceSale.setText(Utility.currencyRp(modelProduct.getPrice_normal()));
         }
+
+        holder.cardProduct.setOnClickListener(view -> {
+            Intent intent = new Intent(mContext, ProductDetail.class);
+            intent.putExtra("key_product", modelProduct.getKey());
+            intent.putExtra("key_category", modelProduct.getCategory());
+            mContext.startActivity(intent);
+        });
 
 
     }
@@ -67,12 +76,14 @@ public class AdapterHomeNewProduct extends RecyclerView.Adapter<AdapterHomeNewPr
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView nameProduct, priceSale, priceNormal;
         ImageView imageProduct;
+        CardView cardProduct;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             nameProduct = itemView.findViewById(R.id.name_product_tv);
             priceSale = itemView.findViewById(R.id.price_sale_tv);
             priceNormal = itemView.findViewById(R.id.price_disc);
             imageProduct = itemView.findViewById(R.id.image_product_thumbs);
+            cardProduct = itemView.findViewById(R.id.card_product);
 
         }
     }
