@@ -103,7 +103,7 @@ public class Home extends Fragment {
     }
 
     private void setCategoryList(){
-        reference.child("category").addValueEventListener(new ValueEventListener() {
+        reference.child("category").limitToFirst(10).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 listCategory = new ArrayList<>();
