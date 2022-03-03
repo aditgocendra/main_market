@@ -15,9 +15,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MainMarket">
         <activity
+            android:name=".View.User.ProductDetail"
+            android:exported="false" />
+        <activity
+            android:name=".View.User.AllCategory"
+            android:exported="false" />
+        <activity
             android:name=".View.Admin.EditProduct"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".View.Admin.ManageProduct"
             android:exported="false" />
