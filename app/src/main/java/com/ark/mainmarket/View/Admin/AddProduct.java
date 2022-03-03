@@ -17,7 +17,7 @@ import com.ark.mainmarket.Model.ModelCategory;
 import com.ark.mainmarket.Model.ModelProduct;
 import com.ark.mainmarket.R;
 import com.ark.mainmarket.Utility;
-import com.ark.mainmarket.databinding.ActivityProductAddBinding;
+import com.ark.mainmarket.databinding.ActivityAddProductBinding;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textfield.TextInputEditText;
@@ -38,7 +38,7 @@ import petrov.kristiyan.colorpicker.ColorPicker;
 
 public class AddProduct extends AppCompatActivity {
 
-    private ActivityProductAddBinding binding;
+    private ActivityAddProductBinding binding;
 
     // pick image gallery
     private final int PICK_IMAGE_GALLERY = 8888;
@@ -58,7 +58,7 @@ public class AddProduct extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityProductAddBinding.inflate(getLayoutInflater());
+        binding = ActivityAddProductBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         Utility.checkWindowSetFlag(this);
@@ -75,7 +75,7 @@ public class AddProduct extends AppCompatActivity {
             String nameItem = binding.nameItemTiAdd.getText().toString();
             String priceNormalItem = binding.priceItemNormalTiAdd.getText().toString();
             String condition = binding.autoCompleteCondition.getText().toString();
-            String stock = binding.autoCompleteStock.getText().toString();
+            String stock = binding.stockProductAdd.getText().toString();
             String desc = binding.descriptionItemTiAdd.getText().toString();
 
             if (nameItem.isEmpty()){
@@ -85,7 +85,7 @@ public class AddProduct extends AppCompatActivity {
             }else if (condition.isEmpty()){
                 binding.autoCompleteCondition.setError("Tidak boleh kosong");
             }else if (stock.isEmpty()){
-                binding.autoCompleteStock.setError("Tidak boleh kosong");
+                binding.stockProductAdd.setError("Tidak boleh kosong");
             }else if (desc.isEmpty()){
                 binding.descriptionItemTiAdd.setError("Tidak boleh kosong");
             }else if (categorySelectKey == null){
@@ -138,7 +138,7 @@ public class AddProduct extends AppCompatActivity {
         TextInputLayout layoutMinBuyWholesale = viewBottomDialog.findViewById(R.id.layout_min_buy_wholesale);
         Button finishPromoBtn = viewBottomDialog.findViewById(R.id.finish_promo_btn);
 
-        String[] disc = {"-","10", "20", "50", "70", "90"};
+        String[] disc = {"-", "5", "10", "20", "50", "70", "90"};
         ArrayAdapter<String> discAdapter;
         discAdapter = new ArrayAdapter<>(this, R.layout.layout_option_item, disc);
         autoCompleteDisc.setAdapter(discAdapter);
@@ -164,10 +164,7 @@ public class AddProduct extends AppCompatActivity {
         conditionAdapter = new ArrayAdapter<>(this, R.layout.layout_option_item, condition);
         binding.autoCompleteCondition.setAdapter(conditionAdapter);
 
-        String[] stock = {"> 10", "> 100", "> 1000"};
-        ArrayAdapter<String> stockAdapter;
-        stockAdapter = new ArrayAdapter<>(this, R.layout.layout_option_item, stock);
-        binding.autoCompleteStock.setAdapter(stockAdapter);
+
 
         setCategoryProduct();
 
@@ -250,7 +247,7 @@ public class AddProduct extends AppCompatActivity {
         String nameItem = binding.nameItemTiAdd.getText().toString();
         String priceNormalItem = binding.priceItemNormalTiAdd.getText().toString();
         String condition = binding.autoCompleteCondition.getText().toString();
-        String stock = binding.autoCompleteStock.getText().toString();
+        String stock = binding.stockProductAdd.getText().toString();
         String desc = binding.descriptionItemTiAdd.getText().toString();
         boolean freeSending = false, wholeSale = false;
         String priceWholeSale = "-", minWholeSale= "-";
