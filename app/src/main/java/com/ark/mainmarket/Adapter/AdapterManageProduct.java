@@ -56,10 +56,10 @@ public class AdapterManageProduct extends RecyclerView.Adapter<AdapterManageProd
 
         if (!modelProduct.getDisc().equals("-")){
             holder.priceNormal.setVisibility(View.VISIBLE);
-            holder.priceNormal.setText(modelProduct.getPrice_normal());
+            holder.priceNormal.setText(Utility.currencyRp(modelProduct.getPrice_normal()));
             holder.priceNormal.setPaintFlags(holder.priceNormal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-            int totalDisc = Integer.parseInt(modelProduct.getPrice_normal()) * (Integer.parseInt(modelProduct.getDisc()) / 100);
-            int priceSale = Integer.parseInt(modelProduct.getPrice_normal()) - totalDisc;
+            float totalDisc = Integer.parseInt(modelProduct.getPrice_normal()) * (Float.parseFloat(modelProduct.getDisc()) / 100);
+            float priceSale = Integer.parseInt(modelProduct.getPrice_normal()) - totalDisc;
             holder.priceSale.setText(Utility.currencyRp(String.valueOf(priceSale)));
         }else {
            holder.priceSale.setText(Utility.currencyRp(modelProduct.getPrice_normal()));
