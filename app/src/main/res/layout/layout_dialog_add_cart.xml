@@ -52,11 +52,27 @@
                     android:textSize="14sp"
                     android:textColor="@color/black"/>
 
+                <TextView
+                    android:id="@+id/free_sending_cart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gratis Pengiriman"
+                    android:background="@drawable/border_corner_green"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="11sp"
+                    android:visibility="gone"
+                    android:layout_marginTop="2dp"
+                    android:paddingStart="6dp"
+                    android:paddingEnd="6dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:textColor="@color/blue_text"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="10dp"
                     android:gravity="center_vertical">
 
                     <TextView
@@ -93,8 +109,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="18dp">
+                    android:layout_gravity="end"
+                    android:layout_marginTop="6dp">
 
                     <ImageView
                         android:id="@+id/min_value_product"
@@ -110,6 +126,7 @@
                         android:text="1"
                         android:fontFamily="@font/poppins_medium"
                         android:padding="5dp"
+                        android:gravity="center"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:textSize="14sp"/>
