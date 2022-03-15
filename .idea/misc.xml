@@ -67,10 +67,11 @@
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/activity_profile.xml" value="0.25" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/activity_register.xml" value="0.22" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/custom_delete_dialog.xml" value="0.24070115433946132" />
+        <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/fragment_cart_shop.xml" value="0.33" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/fragment_favorite.xml" value="0.17144078666096624" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/fragment_feed.xml" value="0.17144078666096624" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/fragment_home.xml" value="0.22" />
-        <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/layout_dialog_add_cart.xml" value="0.25" />
+        <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/layout_dialog_add_cart.xml" value="0.5" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/layout_dialog_edit_category.xml" value="0.33" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/layout_dialog_promo.xml" value="0.22" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/layout/layout_grid_manage_product.xml" value="0.33" />
