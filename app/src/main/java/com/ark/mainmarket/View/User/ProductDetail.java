@@ -269,7 +269,7 @@ public class ProductDetail extends AppCompatActivity {
 
     private void addProductToCart(String keyProduct, String totalProduct){
         ModelShopCart modelShopCart = new ModelShopCart(keyProduct, totalProduct);
-        reference.child("cart").child(Utility.uidCurrentUser).push().setValue(modelShopCart).addOnCompleteListener(task -> {
+        reference.child("cart").child(Utility.uidCurrentUser).child(keyProduct).setValue(modelShopCart).addOnCompleteListener(task -> {
             if (task.isSuccessful()){
                 Utility.toastLS(ProductDetail.this, "Berhasil menambahkan produk ke dalam keranjang");
             }else {
@@ -300,8 +300,6 @@ public class ProductDetail extends AppCompatActivity {
             userFav = true;
         }).addOnFailureListener(e -> Utility.toastLS(ProductDetail.this, "Gagal menambahkan item ke favorit"));
     }
-
-
 
     private void removeFavorite(){
         reference.child("product_favorite").child(Utility.uidCurrentUser).child(keyProduct).removeValue().addOnSuccessListener(unused -> {

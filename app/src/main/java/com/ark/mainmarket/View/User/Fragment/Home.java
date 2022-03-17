@@ -1,4 +1,4 @@
-package com.ark.mainmarket.View.Fragment;
+package com.ark.mainmarket.View.User.Fragment;
 
 import android.os.Bundle;
 
@@ -14,7 +14,7 @@ import com.ark.mainmarket.Adapter.AdapterHomeNewProduct;
 import com.ark.mainmarket.Model.ModelCategory;
 import com.ark.mainmarket.Model.ModelProduct;
 import com.ark.mainmarket.Utility;
-import com.ark.mainmarket.View.User.Profile;
+import com.ark.mainmarket.View.User.Cart;
 import com.ark.mainmarket.databinding.FragmentHomeBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -84,9 +84,7 @@ public class Home extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
-        binding.accountImg.setOnClickListener(view -> {
-            Utility.updateUI(getActivity(), Profile.class);
-        });
+        binding.cardCart.setOnClickListener(view -> Utility.updateUI(getContext(), Cart.class));
 
         // category recycle
         RecyclerView.LayoutManager layoutManagerCategory = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);

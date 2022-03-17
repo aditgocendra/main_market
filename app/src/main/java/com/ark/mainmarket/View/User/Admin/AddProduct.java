@@ -1,4 +1,4 @@
-package com.ark.mainmarket.View.Admin;
+package com.ark.mainmarket.View.User.Admin;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

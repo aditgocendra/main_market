@@ -15,29 +15,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MainMarket">
         <activity
+            android:name=".View.User.Cart"
+            android:exported="false" />
+        <activity
             android:name=".View.User.ProductDetail"
             android:exported="false" />
         <activity
             android:name=".View.User.AllCategory"
             android:exported="false" />
         <activity
-            android:name=".View.Admin.EditProduct"
+            android:name=".View.User.Admin.EditProduct"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".View.Admin.ManageProduct"
+            android:name=".View.User.Admin.ManageProduct"
             android:exported="false" />
         <activity
-            android:name=".View.Admin.EditCategory"
+            android:name=".View.User.Admin.EditCategory"
             android:exported="false" />
         <activity
-            android:name=".View.Admin.ManageCategory"
+            android:name=".View.User.Admin.ManageCategory"
             android:exported="false" />
         <activity
-            android:name=".View.Admin.AdministratorMenu"
-            android:exported="false" />
-        <activity
-            android:name=".View.User.Profile"
+            android:name=".View.User.Admin.AdministratorMenu"
             android:exported="false" />
         <activity
             android:name=".View.Auth.ForgotPassword"
@@ -49,13 +49,13 @@
             android:name=".View.Auth.Login"
             android:exported="false" />
         <activity
-            android:name=".View.Admin.AddCategory"
+            android:name=".View.User.Admin.AddCategory"
             android:exported="false" />
         <activity
             android:name=".View.User.HomeApp"
             android:exported="false" />
         <activity
-            android:name=".View.Admin.AddProduct"
+            android:name=".View.User.Admin.AddProduct"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity

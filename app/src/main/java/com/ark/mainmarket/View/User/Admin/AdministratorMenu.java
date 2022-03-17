@@ -1,13 +1,11 @@
-package com.ark.mainmarket.View.Admin;
+package com.ark.mainmarket.View.User.Admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 
 import com.ark.mainmarket.Utility;
-import com.ark.mainmarket.View.User.Profile;
 import com.ark.mainmarket.databinding.ActivityAdministratorMenuBinding;
 
 public class AdministratorMenu extends AppCompatActivity {

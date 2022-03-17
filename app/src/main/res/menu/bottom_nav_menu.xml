@@ -2,27 +2,27 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/home"
-        android:title="Home"
+        android:title="@string/home"
         android:icon="@drawable/ic_home"/>
 
     <item
         android:id="@+id/feed"
-        android:title="Feed"
+        android:title="@string/feed"
         android:icon="@drawable/ic_feed"/>
 
     <item
         android:id="@+id/transaction"
-        android:title="Pesanan"
+        android:title="@string/pesanan"
         android:icon="@drawable/ic_transaction"/>
 
     <item
-        android:id="@+id/shop_cart"
-        android:title="Keranjang"
-        android:icon="@drawable/ic_shopping_cart"/>
+        android:id="@+id/fav"
+        android:title="@string/favorit"
+        android:icon="@drawable/ic_favorite"/>
 
     <item
-        android:id="@+id/fav"
-        android:title="Favorit"
-        android:icon="@drawable/ic_favorite"/>
+        android:id="@+id/account"
+        android:title="@string/akun"
+        android:icon="@drawable/ic_account_circle"/>
 
 </menu>

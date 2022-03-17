@@ -1,25 +1,19 @@
 package com.ark.mainmarket.View.User;
 
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
-
 import android.os.Bundle;
-
-
 import com.ark.mainmarket.Model.ModelUser;
 import com.ark.mainmarket.R;
 import com.ark.mainmarket.Utility;
-import com.ark.mainmarket.View.Fragment.Favorite;
-import com.ark.mainmarket.View.Fragment.Feed;
-import com.ark.mainmarket.View.Fragment.Home;
+import com.ark.mainmarket.View.User.Fragment.Account;
+import com.ark.mainmarket.View.User.Fragment.Favorite;
+import com.ark.mainmarket.View.User.Fragment.Feed;
+import com.ark.mainmarket.View.User.Fragment.Home;
 import com.ark.mainmarket.databinding.ActivityHomeAppBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -48,6 +42,9 @@ public class HomeApp extends AppCompatActivity {
                 case R.id.feed:
                     changeFragment(new Feed());
                     break;
+                case R.id.account:
+                    changeFragment(new Account());
+                    break;
                 case R.id.fav:
                     changeFragment(new Favorite());
                     break;
@@ -69,16 +66,13 @@ public class HomeApp extends AppCompatActivity {
     private void setGlobalRole(){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
-        reference.child("users").child(Utility.uidCurrentUser).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (task.isSuccessful()){
-                    ModelUser modelUser = task.getResult().getValue(ModelUser.class);
-                    assert modelUser != null;
-                    Utility.roleCurrentUser = modelUser.getRole();
-                }else {
-                    Utility.toastLS(HomeApp.this, Objects.requireNonNull(task.getException()).getMessage());
-                }
+        reference.child("users").child(Utility.uidCurrentUser).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()){
+                ModelUser modelUser = task.getResult().getValue(ModelUser.class);
+                assert modelUser != null;
+                Utility.roleCurrentUser = modelUser.getRole();
+            }else {
+                Utility.toastLS(HomeApp.this, Objects.requireNonNull(task.getException()).getMessage());
             }
         });
     }

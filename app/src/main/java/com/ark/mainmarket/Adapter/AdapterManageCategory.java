@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ark.mainmarket.Model.ModelCategory;
 import com.ark.mainmarket.R;
 import com.ark.mainmarket.Utility;
-import com.ark.mainmarket.View.Admin.EditCategory;
+import com.ark.mainmarket.View.User.Admin.EditCategory;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -33,7 +33,6 @@ public class AdapterManageCategory extends RecyclerView.Adapter<AdapterManageCat
 
     public AdapterManageCategory(Context mContext){
         this.mContext = mContext;
-
     }
 
     public void setItem(List<ModelCategory> listCategory){
@@ -57,18 +56,14 @@ public class AdapterManageCategory extends RecyclerView.Adapter<AdapterManageCat
         if (!modelCategory.getName_category().equals("Semua Kategori")){
             categoryManage(holder, modelCategory, position);
         }
-
-
     }
-    
-
 
     @Override
     public int getItemCount() {
         return modelCategoryList.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView iconCategory;
         TextView nameCategory;
         CardView cardEdit, cardDelete;
@@ -133,7 +128,7 @@ public class AdapterManageCategory extends RecyclerView.Adapter<AdapterManageCat
                     if (taskDatabase.isSuccessful()){
                         Utility.toastLS(mContext, "Berhasil menghapus kategori");
                         modelCategoryList.remove(pos);
-                        this.notifyDataSetChanged();
+                        this.notifyItemRemoved(pos);
                     }else {
                         Utility.toastLS(mContext, Objects.requireNonNull(taskDatabase.getException()).getMessage());
                     }

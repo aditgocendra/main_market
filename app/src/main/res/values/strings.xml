@@ -12,4 +12,9 @@
     <string name="new_item">Baru</string>
     <string name="second_item">Bekas</string>
     <string name="image_product">image product</string>
+    <string name="feed">Feed</string>
+    <string name="home">Home</string>
+    <string name="pesanan">Pesanan</string>
+    <string name="favorit">Favorit</string>
+    <string name="akun">Akun</string>
 </resources>
