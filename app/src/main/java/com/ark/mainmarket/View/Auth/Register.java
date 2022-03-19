@@ -26,7 +26,7 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        Utility.checkWindowSetFlag(this);
         listenerClick();
 
     }
@@ -39,39 +39,36 @@ public class Register extends AppCompatActivity {
         });
 
         // register
-        binding.signUpBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String username = binding.usernameRegisterTi.getText().toString();
-                String email = binding.emailRegisterTi.getText().toString();
-                String password = binding.passwordRegisterTi.getText().toString();
-                String re_pass = binding.rePasswordRegisterTi.getText().toString();
+        binding.signUpBtn.setOnClickListener(view -> {
+            String username = binding.usernameRegisterTi.getText().toString();
+            String email = binding.emailRegisterTi.getText().toString();
+            String password = binding.passwordRegisterTi.getText().toString();
+            String re_pass = binding.rePasswordRegisterTi.getText().toString();
 
-                // validation form
-                if (username.isEmpty()){
-                    binding.usernameRegisterTi.setError("Username harus diisi");
-                }else if (email.isEmpty()){
-                    binding.emailRegisterTi.setError("Email harus diisi");
-                }else if (password.isEmpty()){
-                    binding.passwordRegisterTi.setError("Password harus diisi");
-                }else if (re_pass.isEmpty()){
-                    binding.rePasswordRegisterTi.setError("Konfirmasi password harus diisi");
-                }else {
-                    if (password.equals(re_pass)){
-                        if (password.length() >= 8){
-                            createUser(
-                                    binding.usernameRegisterTi.getText().toString(),
-                                    binding.emailRegisterTi.getText().toString(),
-                                    binding.passwordRegisterTi.getText().toString()
-                            );
-                            binding.redirectSignIn.setEnabled(false);
-                            binding.progressCircular.setVisibility(View.VISIBLE);
-                        }else {
-                            Utility.toastLS(Register.this, "Password minimal 8 karakter");
-                        }
+            // validation form
+            if (username.isEmpty()){
+                binding.usernameRegisterTi.setError("Username harus diisi");
+            }else if (email.isEmpty()){
+                binding.emailRegisterTi.setError("Email harus diisi");
+            }else if (password.isEmpty()){
+                binding.passwordRegisterTi.setError("Password harus diisi");
+            }else if (re_pass.isEmpty()){
+                binding.rePasswordRegisterTi.setError("Konfirmasi password harus diisi");
+            }else {
+                if (password.equals(re_pass)){
+                    if (password.length() >= 8){
+                        createUser(
+                                binding.usernameRegisterTi.getText().toString(),
+                                binding.emailRegisterTi.getText().toString(),
+                                binding.passwordRegisterTi.getText().toString()
+                        );
+                        binding.redirectSignIn.setEnabled(false);
+                        binding.progressCircular.setVisibility(View.VISIBLE);
                     }else {
-                        Utility.toastLS(Register.this, "Password dan konfirmasi password tidak sama");
+                        Utility.toastLS(Register.this, "Password minimal 8 karakter");
                     }
+                }else {
+                    Utility.toastLS(Register.this, "Password dan konfirmasi password tidak sama");
                 }
             }
         });

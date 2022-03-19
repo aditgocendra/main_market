@@ -216,7 +216,7 @@
                         android:fontFamily="@font/poppins_medium"
                         android:text="Administrator"
                         android:textColor="#B3B3B3"
-                        android:visibility="gone"
+                        android:visibility="visible"
                         app:drawableEndCompat="@drawable/ic_admin_settings"
                         app:drawableTint="@color/blue_text" />
 

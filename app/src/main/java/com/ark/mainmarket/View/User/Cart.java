@@ -49,7 +49,7 @@ public class Cart extends AppCompatActivity {
         binding.recycleCartShop.setHasFixedSize(true);
         binding.recycleCartShop.setLayoutManager(layoutManagerCategory);
 
-        adapterCartShop = new AdapterCartShop(this);
+        adapterCartShop = new AdapterCartShop(this, binding.countPriceOrderTv);
         binding.recycleCartShop.setAdapter(adapterCartShop);
 
         reference.child("cart").child(Utility.uidCurrentUser).get().addOnCompleteListener(task -> {
@@ -131,7 +131,7 @@ public class Cart extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(Cart.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

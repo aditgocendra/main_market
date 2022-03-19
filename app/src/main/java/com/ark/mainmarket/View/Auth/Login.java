@@ -9,6 +9,7 @@ import com.ark.mainmarket.View.User.HomeApp;
 import com.ark.mainmarket.databinding.ActivityLoginBinding;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Objects;
 
@@ -21,8 +22,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        Utility.checkWindowSetFlag(this);
         listenerClick();
 
     }
@@ -52,6 +52,8 @@ public class Login extends AppCompatActivity {
 
         mAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(task -> {
             if (task.isSuccessful()){
+                FirebaseUser mUser = mAuth.getCurrentUser();
+                Utility.uidCurrentUser = mUser.getUid();
                 Utility.updateUI(Login.this, HomeApp.class);
                 finish();
             }else {

@@ -22,36 +22,26 @@ import com.google.firebase.auth.FirebaseAuth;
         super.onCreate(savedInstanceState);
         binding = ActivityForgotPasswordBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        Utility.checkWindowSetFlag(this);
 
-        binding.resetPassBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String email = binding.emailForgotPass.getText().toString();
-                if (email.isEmpty()){
-                    binding.emailForgotPass.setError("Email tidak boleh kosong");
-                }else {
-                    forgotPass(email);
-                }
+        binding.resetPassBtn.setOnClickListener(view -> {
+            String email = binding.emailForgotPass.getText().toString();
+            if (email.isEmpty()){
+                binding.emailForgotPass.setError("Email tidak boleh kosong");
+            }else {
+                forgotPass(email);
             }
         });
 
-        binding.redirectSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utility.updateUI(ForgotPassword.this, Login.class);
-                finish();
-            }
+        binding.redirectSignIn.setOnClickListener(view -> {
+            Utility.updateUI(ForgotPassword.this, Login.class);
+            finish();
         });
 
     }
 
      private void forgotPass(String email) {
          FirebaseAuth mAuth = FirebaseAuth.getInstance();
-         mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
-             @Override
-             public void onComplete(@NonNull Task<Void> task) {
-                 Utility.toastLS(ForgotPassword.this, "Kami telah mengirimkan email kepada anda untuk melakukan reset password anda");
-             }
-         });
+         mAuth.sendPasswordResetEmail(email).addOnCompleteListener(task -> Utility.toastLS(ForgotPassword.this, "Kami telah mengirimkan email kepada anda untuk melakukan reset password anda"));
      }
  }
