@@ -91,10 +91,14 @@
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/menu/menu.xml" value="0.1954861111111111" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/menu/menu_navbar.xml" value="0.1954861111111111" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/menu/toolbar_menu.xml" value="0.1954861111111111" />
+        <entry key="..\:/Users/gocen/Documents/AndroidPoject/main_market/app/src/main/res/layout/activity_cart.xml" value="0.29322916666666665" />
+        <entry key="..\:/Users/gocen/Documents/AndroidPoject/main_market/app/src/main/res/layout/fragment_favorite.xml" value="0.25" />
+        <entry key="..\:/Users/gocen/Documents/AndroidPoject/main_market/app/src/main/res/layout/layout_item_favorite.xml" value="0.5" />
+        <entry key="..\:/Users/gocen/Documents/AndroidPoject/main_market/app/src/main/res/layout/layout_my_cart_shop.xml" value="0.29322916666666665" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
