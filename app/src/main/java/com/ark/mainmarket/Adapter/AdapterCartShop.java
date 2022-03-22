@@ -5,12 +5,12 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,26 +22,25 @@ import com.ark.mainmarket.Model.ModelProduct;
 import com.ark.mainmarket.Model.ModelShopCart;
 import com.ark.mainmarket.R;
 import com.ark.mainmarket.Utility;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class AdapterCartShop extends RecyclerView.Adapter<AdapterCartShop.CartShopViewHolder> {
 
     private final Context mContext;
-    private TextView textPriceCart;
+    private final TextView textPriceCart;
 
     private final List<ModelShopCart> listShopCart = new ArrayList<>();
     private final DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
-    // price total cart
+    // price set
     private int totalPriceCart = 0;
-    private int oldTotalPriceCart = 0;
+    boolean checkPriceChange = false;
+
 
     public AdapterCartShop(Context mContext, TextView textPriceCart) {
         this.mContext = mContext;
@@ -64,19 +63,27 @@ public class AdapterCartShop extends RecyclerView.Adapter<AdapterCartShop.CartSh
     public void onBindViewHolder(@NonNull CartShopViewHolder holder, int position) {
         ModelShopCart modelShopCart = listShopCart.get(position);
         holder.textPriceNormal.setPaintFlags(holder.textPriceNormal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-        setProduct(holder, modelShopCart, position);
+        setProduct(holder, modelShopCart);
 
+        holder.checkBoxProduct.setOnCheckedChangeListener((compoundButton, b) -> {
+            String textPriceSale = holder.textPriceSale.getText().toString().replaceAll("[^0-9]","");
+            String textPriceAllItem = textPriceCart.getText().toString().replaceAll("[^0-9]","");
 
+            if (!textPriceSale.equals("-") && !textPriceAllItem.equals("-")){
+                int priceSale = Integer.parseInt(textPriceSale);
+                int priceAllItem = Integer.parseInt(textPriceAllItem);
 
-//        holder.checkBoxProduct.setOnCheckedChangeListener((compoundButton, b) -> {
-//            if (b){
-//                setChangeOrderPrice(holder.textPriceSale.getText().toString());
-//            }
-//        });
+                if (b){
+                    priceAllItem += priceSale;
+                }else {
+                    priceAllItem -= priceSale;
+                }
 
+                textPriceCart.setText(Utility.currencyRp(String.valueOf(priceAllItem)));
+            }
+        });
 
     }
-
 
     @Override
     public int getItemCount() {
@@ -107,7 +114,7 @@ public class AdapterCartShop extends RecyclerView.Adapter<AdapterCartShop.CartSh
     }
 
 
-    private void setProduct(CartShopViewHolder holder, ModelShopCart modelShopCart, int pos) {
+    private void setProduct(CartShopViewHolder holder, ModelShopCart modelShopCart) {
         reference.child("product").child(modelShopCart.getKey()).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()){
                 ModelProduct modelProduct = task.getResult().getValue(ModelProduct.class);
@@ -126,23 +133,33 @@ public class AdapterCartShop extends RecyclerView.Adapter<AdapterCartShop.CartSh
                     setPriceValueProduct(holder, modelProduct, value, "default");
 
 
-                    // if the change value product
+                    // if the change value product min
                     holder.minValueProduct.setOnClickListener(view -> {
                         int valueChange = Integer.parseInt(holder.textValueProduct.getText().toString());
                         if (valueChange <= 1){
-                            confirmProductCart(modelShopCart.getKey(), pos);
+                            confirmDeleteProductCart(modelShopCart.getKey());
                         }else {
                             valueChange -= 1;
+
+                            if (!modelProduct.getMin_buy_wholesale().equals("-")){
+                                checkPriceChange = (valueChange + 1) == Integer.parseInt(modelProduct.getMin_buy_wholesale());
+                            }
+
                             setPriceValueProduct(holder, modelProduct, valueChange, "min");
                         }
                     });
 
+                    // if the change value product plus
                     holder.addValueProduct.setOnClickListener(view -> {
                         int valueChange = Integer.parseInt(holder.textValueProduct.getText().toString());
                         if (valueChange >= Integer.parseInt(modelProduct.getStock())){
-                            confirmProductCart(modelShopCart.getKey(), pos);
+                            Toast.makeText(mContext, "Sudah mencapai batas stock product", Toast.LENGTH_SHORT).show();
                         }else {
                             valueChange += 1;
+                            if (!modelProduct.getMin_buy_wholesale().equals("-")){
+                                checkPriceChange = valueChange == Integer.parseInt(modelProduct.getMin_buy_wholesale());
+                            }
+                            Log.d("check_change", modelProduct.getMin_buy_wholesale()+" "+valueChange);
                             setPriceValueProduct(holder, modelProduct, valueChange, "add");
                         }
                     });
@@ -151,32 +168,67 @@ public class AdapterCartShop extends RecyclerView.Adapter<AdapterCartShop.CartSh
                     Toast.makeText(mContext, "Product tidak ditemukan", Toast.LENGTH_SHORT).show();
                 }
             }else {
-                Toast.makeText(mContext, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void setPriceValueProduct(CartShopViewHolder holder, ModelProduct modelProduct, int value, String operation) {
-        float priceProduct = 0;
-        float priceSale = 0;
+        float priceProduct;
+        float priceSale;
         float priceStrike = 0;
 
         if (!modelProduct.getDisc().equals("-")){
+            // disc product sale set
             float totalDisc = Integer.parseInt(modelProduct.getPrice_normal()) * (Float.parseFloat(modelProduct.getDisc()) / 100);
+
+            if (checkPriceChange && operation.equals("min")){
+                if (modelProduct.isWholesale()){
+                    priceProduct = Integer.parseInt(modelProduct.getPrice_wholesale());
+                    totalPriceCart -= priceProduct * (value + 1);
+                    totalPriceCart += (Integer.parseInt(modelProduct.getPrice_normal()) - totalDisc) * (value + 1);
+                }
+                checkPriceChange = false;
+            }
+
             priceProduct = (Integer.parseInt(modelProduct.getPrice_normal()) - totalDisc);
             priceSale = priceProduct * value;
             priceStrike = Integer.parseInt(modelProduct.getPrice_normal()) * value;
 
             holder.textPriceNormal.setVisibility(View.VISIBLE);
         }else {
+            // normal price and not disc
+            if (checkPriceChange && operation.equals("min")){
+                if (modelProduct.isWholesale()){
+                    priceProduct = Integer.parseInt(modelProduct.getPrice_wholesale());
+                    totalPriceCart -= priceProduct * (value + 1);
+                    totalPriceCart += Integer.parseInt(modelProduct.getPrice_normal()) * (value + 1);
+                }
+                checkPriceChange = false;
+            }
+
             priceProduct = Integer.parseInt(modelProduct.getPrice_normal());
             priceSale = priceProduct * value;
         }
+
 
         if (modelProduct.isWholesale()){
             if (value >= Integer.parseInt(modelProduct.getMin_buy_wholesale())){
                 holder.wholeSale.setVisibility(View.VISIBLE);
                 holder.textPriceNormal.setVisibility(View.VISIBLE);
+
+                // check if the price change to wholesale
+                if (checkPriceChange){
+                    if (!modelProduct.getDisc().equals("-")){
+                        float totalDisc = Integer.parseInt(modelProduct.getPrice_normal()) * (Float.parseFloat(modelProduct.getDisc()) / 100);
+                        priceProduct = (Integer.parseInt(modelProduct.getPrice_normal()) - totalDisc);
+                    }else {
+                        priceProduct = Integer.parseInt(modelProduct.getPrice_normal());
+                    }
+                    totalPriceCart -= priceProduct * (value - 1);
+                    totalPriceCart += Integer.parseInt(modelProduct.getPrice_wholesale()) * (value - 1);
+                    checkPriceChange = false;
+                }
 
                 priceProduct = Integer.parseInt(modelProduct.getPrice_wholesale());
                 priceStrike = Integer.parseInt(modelProduct.getPrice_normal()) * value;
@@ -190,19 +242,26 @@ public class AdapterCartShop extends RecyclerView.Adapter<AdapterCartShop.CartSh
         holder.textPriceSale.setText(Utility.currencyRp(String.valueOf(priceSale)));
         holder.textValueProduct.setText(String.valueOf(value));
 
+
         if (operation.equals("default")){
             totalPriceCart += priceSale;
-        }else if (operation.equals("min")){
-            totalPriceCart -= priceProduct;
-        }else {
+        }
+
+        if (operation.equals("add")){
             totalPriceCart += priceProduct;
         }
 
-        setCartOrderPrice();
+        if (operation.equals("min")){
+            totalPriceCart -= priceProduct;
+        }
+
+        if (holder.checkBoxProduct.isChecked()){
+            setCartOrderPrice();
+        }
 
     }
 
-    private void confirmProductCart(String keyProduct, int pos){
+    private void confirmDeleteProductCart(String keyProduct){
         //Create the Dialog here
         Dialog dialog = new Dialog(mContext);
         dialog.setContentView(R.layout.custom_delete_dialog);
@@ -220,22 +279,21 @@ public class AdapterCartShop extends RecyclerView.Adapter<AdapterCartShop.CartSh
 
         dialog.show();
         Okay.setOnClickListener(v -> {
-            deleteProductCart(keyProduct, pos);
+            deleteProductCart(keyProduct);
             dialog.dismiss();
         });
 
         Cancel.setOnClickListener(v -> dialog.dismiss());
     }
 
-    private void deleteProductCart(String key, int pos){
-
+    private void deleteProductCart(String key){
         reference.child("cart").child(Utility.uidCurrentUser).child(key).removeValue().addOnCompleteListener(task -> {
             if (task.isSuccessful()){
                 ((Activity) mContext).finish();
                 mContext.startActivity(((Activity) mContext).getIntent());
                 ((Activity) mContext).overridePendingTransition(R.anim.nav_default_enter_anim, R.anim.nav_default_pop_exit_anim);
             }else {
-                Toast.makeText(mContext, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -243,6 +301,5 @@ public class AdapterCartShop extends RecyclerView.Adapter<AdapterCartShop.CartSh
     private void setCartOrderPrice(){
         textPriceCart.setText(Utility.currencyRp(String.valueOf(totalPriceCart)));
     }
-
 
 }
