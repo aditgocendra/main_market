@@ -23,8 +23,8 @@ import java.util.List;
 
 public class AdapterHomeNewProduct extends RecyclerView.Adapter<AdapterHomeNewProduct.MyViewHolder> {
 
-    private Context mContext;
-    private List<ModelProduct> listProductNew;
+    private final Context mContext;
+    private final List<ModelProduct> listProductNew;
 
     public AdapterHomeNewProduct(Context mContext, List<ModelProduct> listProductNew) {
         this.mContext = mContext;
