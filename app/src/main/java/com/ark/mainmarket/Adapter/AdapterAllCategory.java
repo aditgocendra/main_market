@@ -11,6 +11,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.ark.mainmarket.Model.ModelCategory;
 import com.ark.mainmarket.R;
+import com.ark.mainmarket.View.User.AllCategory;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -40,6 +41,7 @@ public class AdapterAllCategory extends RecyclerView.Adapter<AdapterAllCategory.
         Picasso.get().load(modelCategory.getIcon_link()).into(holder.iconCategory);
         holder.nameCategory.setText(modelCategory.getName_category());
 
+        holder.cardCategory.setOnClickListener(view -> ((AllCategory) mContext).setProductCategory(modelCategory.getKey()));
     }
 
     @Override
