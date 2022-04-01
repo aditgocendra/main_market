@@ -91,9 +91,25 @@
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/menu/menu.xml" value="0.1954861111111111" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/menu/menu_navbar.xml" value="0.1954861111111111" />
         <entry key="..\:/Users/Gocendra/AndroidStudioProjects/MainMarket/app/src/main/res/menu/toolbar_menu.xml" value="0.1954861111111111" />
+        <entry key="..\:/Users/gocen/Documents/AndroidPoject/main_market/app/src/main/res/drawable/background_corner_only_left.xml" value="0.181" />
+        <entry key="..\:/Users/gocen/Documents/AndroidPoject/main_market/app/src/main/res/layout/activity_administrator_menu.xml" value="0.5" />
+        <entry key="..\:/Users/gocen/Documents/AndroidPoject/main_market/app/src/main/res/layout/activity_all_category.xml" value="0.24070115433946132" />
         <entry key="..\:/Users/gocen/Documents/AndroidPoject/main_market/app/src/main/res/layout/activity_cart.xml" value="0.29322916666666665" />
+        <entry key="..\:/Users/gocen/Documents/AndroidPoject/main_market/app/src/main/res/layout/activity_home_app.xml" value="0.24070115433946132" />
+        <entry key="..\:/Users/gocen/Documents/AndroidPoject/main_market/app/src/main/res/layout/activity_login.xml" value="0.5205930807248764" />
+        <entry key="..\:/Users/gocen/Documents/AndroidPoject/main_market/app/src/main/res/layout/activity_manage_feed.xml" value="0.24070115433946132" />
+        <entry key="..\:/Users/gocen/Documents/AndroidPoject/main_market/app/src/main/res/layout/activity_product_detail.xml" value="0.24070115433946132" />
         <entry key="..\:/Users/gocen/Documents/AndroidPoject/main_market/app/src/main/res/layout/fragment_favorite.xml" value="0.25" />
+        <entry key="..\:/Users/gocen/Documents/AndroidPoject/main_market/app/src/main/res/layout/fragment_home.xml" value="0.33" />
+        <entry key="..\:/Users/gocen/Documents/AndroidPoject/main_market/app/src/main/res/layout/layout_dialog_add_cart.xml" value="0.24070115433946132" />
+        <entry key="..\:/Users/gocen/Documents/AndroidPoject/main_market/app/src/main/res/layout/layout_dialog_edit_category.xml" value="0.24070115433946132" />
+        <entry key="..\:/Users/gocen/Documents/AndroidPoject/main_market/app/src/main/res/layout/layout_dialog_promo.xml" value="0.24070115433946132" />
+        <entry key="..\:/Users/gocen/Documents/AndroidPoject/main_market/app/src/main/res/layout/layout_grid_manage_product.xml" value="0.24070115433946132" />
+        <entry key="..\:/Users/gocen/Documents/AndroidPoject/main_market/app/src/main/res/layout/layout_grid_small_product.xml" value="0.25" />
+        <entry key="..\:/Users/gocen/Documents/AndroidPoject/main_market/app/src/main/res/layout/layout_item_category.xml" value="0.24070115433946132" />
         <entry key="..\:/Users/gocen/Documents/AndroidPoject/main_market/app/src/main/res/layout/layout_item_favorite.xml" value="0.5" />
+        <entry key="..\:/Users/gocen/Documents/AndroidPoject/main_market/app/src/main/res/layout/layout_item_product_1.xml" value="0.24070115433946132" />
+        <entry key="..\:/Users/gocen/Documents/AndroidPoject/main_market/app/src/main/res/layout/layout_item_product_2.xml" value="0.24070115433946132" />
         <entry key="..\:/Users/gocen/Documents/AndroidPoject/main_market/app/src/main/res/layout/layout_my_cart_shop.xml" value="0.29322916666666665" />
       </map>
     </option>
