@@ -22,7 +22,6 @@ import com.ark.mainmarket.databinding.ActivityProductDetailBinding;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 
@@ -64,6 +63,7 @@ public class ProductDetail extends AppCompatActivity {
 
         bottomSheetDialog = new BottomSheetDialog(this);
         binding.cardAddCart.setOnClickListener(view -> bottomSheetDialog.show());
+        binding.cardMyCart.setOnClickListener(view -> Utility.updateUI(ProductDetail.this, Cart.class));
 
         binding.cardWhatsapp.setOnClickListener(view -> {
             String url = "https://api.whatsapp.com/send?phone=" + "+62 896-9947-1130" + "&text=" + "Hi saya tertarik dengan produk anda, apakah saya bisa memesannya sekarang?";
